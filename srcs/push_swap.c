@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:30:06 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/12/21 01:35:47 by cmontaig         ###   ########.fr       */
+/*   Updated: 2024/12/21 05:17:15 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,22 @@ int	ft_isdigit(int c)
 
 int	is_number(char *str)
 {
-	int	i;
+	int i;
+	int sign_count = 0;
 
 	i = 0;
-	 while (str[i])
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (str[i] == '+' || str[i] == '-')
-			i++;
+		sign_count++;
+		i++;
+	}
+	if (sign_count > 1) 
+		return (0);
+	while (str[i])
+	{
 		if (!ft_isdigit(str[i]))
 			return (0);
-		i++;
+	i++;
 	}
 	return (1);
 }
@@ -64,8 +70,6 @@ int	ft_atoi_swap(const char *str)
 		result = result * 10 + str[i] - '0';
 		i++;
 	}
-	if(str[i])
-		ft_error_p();
 	if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
 		ft_error_p();
 	return ((int)(result * sign));
@@ -87,34 +91,18 @@ int	limits(char **argv)
 }
 
 
-// int	duplicate(char **argv)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	j = 0;
-// 	i = 0;
-// 	while(argv[i])
-// 	{
-		
-// 	}
-// }
-
-
 int main (int argc, char **argv)
 {
-	int	i = 0;
+	int	i = 1;
 	
 	if (argc > 2)
 	{
 		if(limits(argv + 1) == 1)
 			ft_error_p();
+
 		while (argv[i])
 		{
-			if (argv[i][0] == '+')
-				printf("%s\n", &argv[i][1]);
-			else
-				printf("%s\n", argv[i]);
+			printf("%d\n", ft_atoi_swap(argv[i]));
 			i++;
 		}
 	}
