@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:30:06 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/12/21 05:17:15 by cmontaig         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:41:47 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	ft_isdigit(int c)
 int	is_number(char *str)
 {
 	int i;
-	int sign_count = 0;
+	int sign_count;
 
 	i = 0;
+	sign_count = 0;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		sign_count++;
@@ -37,7 +38,7 @@ int	is_number(char *str)
 	{
 		if (!ft_isdigit(str[i]))
 			return (0);
-	i++;
+		i++;
 	}
 	return (1);
 }
@@ -89,6 +90,7 @@ int	limits(char **argv)
 	}
 	return (0);
 }
+
 
 
 int main (int argc, char **argv)
