@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:30:03 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/12/28 17:33:03 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/05 19:36:22 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,26 @@
 # include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
-# include "../Libraries/Libft/libft.h"
+# include "../Libraries/libft.h"
 
-// typedef struct s_list
-// {
-// 	int			content;
-// 	int			index;
-// 	struct s_list	*prev;
-// 	struct s_list	*next;
-// }	t_list;
+int		is_number(char *str);
+void	ft_error_p(void);
+int		ft_atoi_swap(const char *str);
+int		limits(char **argv);
+int		duplicate(char **argv);
+void	check_args(int argc, char **argv);
+void	init_list_split(char **split_args, t_list **stack);
+void	init_list(int argc, char **argv, t_list **stack);
+int		swap(t_list **stack);
+int		sa(t_list **stack_a, int true);
+int		sb(t_list **stack_b, int true);
+int		ss(t_list **stack_a, t_list **stack_b);
+int		pb(t_list **stack_a, t_list **stack_b);
+int		pa(t_list **stack_a, t_list **stack_b);
+int		rotate(t_list **stack);
+int		ra(t_list **stack_a, int true);
+int		reverse_rotate(t_list **stack);
+int		rra(t_list **stack_a, int true);
+int		rrb(t_list **stack_b, int true);
 
 #endif

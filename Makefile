@@ -1,15 +1,22 @@
 NAME = push_swap
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 RM = rm -rf
 
 LIBRARIES_DIR = ./Libraries
 LIBRARIES = $(LIBRARIES_DIR)/libft.a
 
-SRCS =	srcs/push_swap.c
+SRCS =	srcs/push_swap.c\
+		srcs/parsing/parsing.c\
+		srcs/parsing/init_list.c\
+		srcs/instructions/instructions_swap.c\
+		srcs/instructions/instructions_rotate.c\
+		srcs/instructions/instructions_rev_rotate.c\
+		srcs/instructions/instructions_push.c\
+
 OBJS = $(SRCS:.c=.o)
 
-$(NAME): $(LIBRARIES) $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(LIBRARIES)
+	cc $(FLAGS) $(OBJS) $(LIBRARIES) -o $(NAME)
 
 $(LIBRARIES):
 	make -C $(LIBRARIES_DIR)

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 07:26:59 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/11/13 09:44:07 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/12/30 14:58:42 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/12/30 17:13:33 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	ft_strcmp(char *s1, char *s2)
 {
-	char	*result;
-	size_t	i;
+	int	i;
 
 	i = 0;
-	result = malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	while (s[i])
+	while (s1[i] || s2[i])
 	{
-		result[i] = f(i, s[i]);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	result[i] = '\0';
-	return (result);
+	return (0);
 }

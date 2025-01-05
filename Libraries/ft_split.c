@@ -6,13 +6,27 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 19:01:56 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/11/13 06:50:19 by cmontaig         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:13:26 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	word_count(char const *s, char c)
+static int	separators(char c, char const *caracters)
+{
+	int	i;
+
+	i = 0;
+	while (caracters[i])
+	{
+		if (caracters[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static size_t	word_count(char const *s, char const *caracters)
 {
 	size_t	i;
 	size_t	count;
@@ -21,27 +35,27 @@ static size_t	word_count(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		while (s[i] == c && s[i])
+		while (s[i] && separators(s[i], caracters) && s[i])
 			i++;
 		if (s[i])
 			count++;
-		while (s[i] != c && s[i])
+		while (!separators(s[i], caracters) && s[i])
 			i++;
 	}
 	return (count);
 }
 
-static int	word_len(char const *str, char c)
+static int	word_len(char const *str, char const *caracters)
 {
 	size_t	len;
 
 	len = 0;
-	while (str[len] && str[len] != c)
+	while (str[len] && !separators(str[len], caracters))
 		len++;
 	return (len);
 }
 
-char	**ft_split(char const *str, char c)
+char	**ft_split(char const *str, char const *caracters)
 {
 	char	**words;
 	size_t	i;
@@ -50,16 +64,16 @@ char	**ft_split(char const *str, char c)
 
 	i = 0;
 	j = 0;
-	words = ft_calloc((word_count(str, c) + 1), sizeof(char *));
+	words = ft_calloc((word_count(str, caracters) + 1), sizeof(char *));
 	if (!words)
 		return (NULL);
 	while (str[i])
 	{
-		while (str[i] == c && str[i])
+		while (str[i] && separators(str[i], caracters) && str[i])
 			i++;
-		if (str[i] != c && str[i])
+		if (str[i] && !separators(str[i], caracters))
 		{
-			length = word_len(&str[i], c);
+			length = word_len(&str[i], caracters);
 			words[j] = ft_substr(str, i, length);
 			j++;
 			i += length;
@@ -67,13 +81,3 @@ char	**ft_split(char const *str, char c)
 	}
 	return (words);
 }
-
-// int	main(void)
-// {
-// 	char	str[] = "Fizzyclap en vacances a la Fizzyplage";
-// 	// char	str[] = "    njsnjvd     nsjsnjk  cd    ";
-// 	char	c = ' ';
-// 	// printf("%zu\n", word_count(str, c));
-// 	ft_split(str, c);
-// 	return (0);
-// }

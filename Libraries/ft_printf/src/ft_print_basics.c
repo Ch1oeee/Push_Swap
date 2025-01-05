@@ -1,19 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_print_basics.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 20:59:22 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/11/13 09:43:02 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/25 14:06:34 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/26 11:02:45 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	ft_print_c(char c)
 {
-	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_print_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (write(1, "(null)", 6));
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_print_i_and_d(int n)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = ft_itoa(n);
+	i = ft_print_str(str);
+	free(str);
+	return (i);
 }

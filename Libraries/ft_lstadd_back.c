@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmontaig <cmontaig@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:00:24 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/11/04 16:12:19 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/14 11:04:38 by cmontaig          #+#    #+#             */
+/*   Updated: 2025/01/02 19:18:45 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return (c);
+	t_list	*lst_2;
+
+	if (lst == NULL)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	lst_2 = ft_lstlast(*lst);
+	lst_2->next = new;
+	// printf("stack a : %d et %d\n", new->content, new->index);
 }

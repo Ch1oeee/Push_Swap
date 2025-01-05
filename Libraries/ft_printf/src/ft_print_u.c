@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 21:07:19 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/11/13 09:41:14 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/19 19:24:30 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/26 01:25:41 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include "../libft/libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_print_u(unsigned int n)
 {
-	if (n == -2147483648)
-	{
-		ft_putstr_fd("-2147483648", fd);
-		return ;
-	}
-	if (n < 0)
-	{
-		n = -n;
-		ft_putchar_fd('-', fd);
-	}
-	if (n < 10)
-		ft_putchar_fd(n + '0', fd);
-	else
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
-}
+	int	i;
 
-// int	main(void)
-// {
-// 	int	n = 
-// 	return (0);
-// }
+	i = 0;
+	if (n > 9)
+	{
+		i += ft_print_u(n / 10);
+		ft_print_u(n % 10);
+	}
+	if (n <= 9)
+		ft_print_c('0' + n);
+	i++;
+	return (i);
+}
