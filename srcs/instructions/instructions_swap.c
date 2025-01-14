@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:07:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/05 19:27:37 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:27:00 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,14 @@ int	swap(t_list **stack)
 	t_list	*first;
 	t_list	*second;
 	int		temp_content;
-	int		temp_index;
 
 	if (ft_lstsize(*stack) < 2)
 		return (-1);
 	first = *stack;
 	second = first->next;
 	temp_content = second->content;
-	temp_index = second->index;
 	second->content = first->content;
-	second->index = first->index;
 	first->content = temp_content;
-	first->index = temp_index;
 	return (0);
 }
 

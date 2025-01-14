@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:30:03 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/05 19:36:22 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:46:01 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,27 @@ int		ra(t_list **stack_a, int true);
 int		reverse_rotate(t_list **stack);
 int		rra(t_list **stack_a, int true);
 int		rrb(t_list **stack_b, int true);
+int		algo_three(t_list **stack_a);
+int		algo_five(t_list **stack_a, t_list **stack_b);
+t_list	*find_biggest(t_list *stack);
+t_list	*find_smallest(t_list *stack);
+int		get_mediane(t_list **stack_a);
+void	sort_list(int *list_element, int size);
+int		med_supp(t_list **stack_a, t_list **stack_b);
+int		closest_value_a(t_list **stack_a, t_list **stack_b);
+void	gen_algo(t_list **stack_a, t_list **stack_b);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif

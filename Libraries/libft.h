@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:55 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/04 15:12:16 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:54:33 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct s_list
 {
 	int			content;
 	int			index;
-	// struct s_list	*prev;
+	int			target_value;
+	int			target_index;
+	int			cost;
 	struct s_list	*next;
 }	t_list;
 
@@ -41,6 +43,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstclear(t_list **lst);
 
 
 

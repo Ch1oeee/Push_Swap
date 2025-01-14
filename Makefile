@@ -1,5 +1,5 @@
 NAME = push_swap
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -rf
 
 LIBRARIES_DIR = ./Libraries
@@ -12,6 +12,8 @@ SRCS =	srcs/push_swap.c\
 		srcs/instructions/instructions_rotate.c\
 		srcs/instructions/instructions_rev_rotate.c\
 		srcs/instructions/instructions_push.c\
+		srcs/algo/small_algo.c\
+		srcs/algo/gen_algo.c\
 
 OBJS = $(SRCS:.c=.o)
 

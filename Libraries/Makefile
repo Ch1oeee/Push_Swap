@@ -16,6 +16,7 @@ SRCS =	ft_isdigit.c\
 		ft_lstlast.c\
 		ft_lstsize.c\
 		ft_lstadd_front.c\
+		ft_lstclear.c\
 
 OBJS = $(SRCS:.c=.o)
 
