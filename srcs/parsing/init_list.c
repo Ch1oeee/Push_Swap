@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:55 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/05 18:48:27 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:35:18 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	init_list_split(char **split_args, t_list **stack)
 		new = ft_lstnew(ft_atoi_swap(split_args[i]));
 		new->index = index;
 		ft_lstadd_back(stack, new);
-		// printf("new element added : %d\n", new->content);
-		// printf("new element index : %d\n", new->index);
 		i++;
 		index++;
 	}
@@ -83,8 +81,6 @@ void	init_list(int argc, char **argv, t_list **stack)
 			ft_lstadd_back(stack, new);
 			i++;
 			index++;
-			// printf("new element added :%d\n", new->content);
-			// printf("new element index :%d\n", new->index);
 		}
 	}
 	else if (argc == 2)

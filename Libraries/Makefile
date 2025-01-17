@@ -21,18 +21,18 @@ SRCS =	ft_isdigit.c\
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
 .c.o:
-	cc $(FLAGS) -c -o $@ $<
+	@cc $(FLAGS) -c -o $@ $<
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_B)
+	@$(RM) $(OBJS) $(OBJS_B)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

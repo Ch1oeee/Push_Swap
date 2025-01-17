@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 11:30:06 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/14 14:37:11 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:48:46 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_stack(t_list *stack)
 {
 	while (stack)
 	{
-		printf("Content: %d, Index: %d\n", stack->content, stack->index);
+		printf("Content: %d, Index: %d\n, Target_value : %d\n, Target_index : %d\n, cost : %d\n", stack->content, stack->index, stack->target_value, stack->target_index, stack->cost);
 		stack = stack->next;
 	}
 }
@@ -48,11 +48,11 @@ int	main(int argc, char **argv)
 			gen_algo(stack_a, stack_b);
 		}
 
-		printf("Stack A\n");
-		print_stack(*stack_a);
+		// printf("Stack A\n");
+		// print_stack(*stack_a);
 
-		printf("Stack B\n");
-		print_stack(*stack_b);
+		// printf("Stack B\n");
+		// print_stack(*stack_b);
  
 		ft_lstclear(stack_a);
 		ft_lstclear(stack_b);
