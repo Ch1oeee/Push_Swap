@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 21:22:10 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/17 16:39:09 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:35:31 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_mediane(t_list **stack_a)
 	size = ft_lstsize(*stack_a);
 	list_element = malloc(size * sizeof(int));
 	if (!list_element)
-		return (0);
+		ft_error_p(stack_a, NULL, NULL);
 	while (temp)
 	{
 		list_element[i] = temp->content;
@@ -47,7 +47,7 @@ void	sort_list(int *list_element, int size)
 	int	swapped;
 
 	i = 0;
-	while (i < size - 1) 
+	while (i < size - 1)
 	{
 		swapped = 0;
 		j = 0;
@@ -62,7 +62,7 @@ void	sort_list(int *list_element, int size)
 			}
 			j++;
 		}
-		if (swapped == 0) 
+		if (swapped == 0)
 			break ;
 		i++;
 	}
@@ -71,22 +71,22 @@ void	sort_list(int *list_element, int size)
 void	med_supp(t_list **stack_a, t_list **stack_b)
 {
 	int	mediane;
-	int size;
-	t_list *temp;
-	
-	temp = *stack_a;
-	while ((size = ft_lstsize(*stack_a)) > 3)
+	int	size;
+	int	done;
+
+	size = ft_lstsize(*stack_a);
+	while (size > 3)
 	{
 		mediane = get_mediane(stack_a);
-		while (temp && ft_lstsize(*stack_a) > 3)
+		done = 0;
+		while (done < size)
 		{
-			if ((*stack_a)->content < mediane)
-				pb(stack_a, stack_b);
+			if ((*stack_a)->content < mediane && ft_lstsize(*stack_a) > 3)
+				pb(stack_a, stack_b, 1);
 			else
-			{
 				ra(stack_a, 1);
-			}
-			temp = *stack_a;
+			done++;
 		}
+		size = ft_lstsize(*stack_a);
 	}
 }

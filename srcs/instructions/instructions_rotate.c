@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:32:41 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/05 19:35:36 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:20:41 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	rotate(t_list **stack)
 {
 	t_list	*first_node;
 	t_list	*current;
-	int		j;
 
 	if (ft_lstsize(*stack) <= 1)
 		return (-1);
@@ -26,12 +25,7 @@ int	rotate(t_list **stack)
 	first_node->next = NULL;
 	ft_lstadd_back(stack, first_node);
 	current = *stack;
-	j = 1;
-	while (current)
-	{
-		current->index = j++;
-		current = current->next;
-	}
+	index_update(current);
 	return (0);
 }
 

@@ -17,6 +17,8 @@ SRCS =	ft_isdigit.c\
 		ft_lstsize.c\
 		ft_lstadd_front.c\
 		ft_lstclear.c\
+		gnl/get_next_line.c\
+		gnl/get_next_line_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 

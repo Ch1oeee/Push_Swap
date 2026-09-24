@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 01:26:05 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/11/26 01:26:07 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/26 14:24:40 by cmontaig          #+#    #+#             */
+/*   Updated: 2025/01/26 17:19:44 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
-# include <stdarg.h>
+# include <fcntl.h>
+# include <stdlib.h>
 # include <stdio.h>
-# include "../libft/libft.h"
 
-int		ft_print_u(unsigned int n);
-int		ft_print_str(char *str);
-int		ft_print_c(char c);
-int		ft_print_i_and_d(int n);
-int		ft_print_x(unsigned long n, const char format);
-int		ft_print_p(unsigned long n);
-int		ft_print_format(const char *format, va_list args, int i, ...);
-int		ft_printf(const char *format, ...);
-int		ft_print_per(char c);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+char	*read_txt(int fd, char *txt);
+char	*one_line(char *buffer);
+char	*lines_after(char *buffer);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *str, int c);
+char	*free_join(char *content, char *buffer);
 
 #endif

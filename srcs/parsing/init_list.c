@@ -6,91 +6,81 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:58:55 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/16 21:35:18 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/26 15:26:07 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../../Libraries/libft.h"
 
-void	check_args(int argc, char **argv)
+void	check_args(int argc, char **argv, t_list **stack_a, t_list **stack_b)
 {
-	int		i;
 	char	**split_args;
 
-	i = 1;
+	split_args = NULL;
 	if (argc > 2)
 	{
 		if (limits(argv + 1) == 1)
-			ft_error_p();
+			ft_error_p(stack_a, stack_b, NULL);
 		if (duplicate(argv + 1) == 1)
-			ft_error_p();
+			ft_error_p(stack_a, stack_b, NULL);
 	}
-	else if (argc == 2)
+	if (argc == 2)
 	{
-		split_args = ft_split(argv[1], "	 ");
-		if(!split_args)
-			ft_error_p();
-		i = 0;
-		while (split_args[i++])
+		split_args = ft_split(argv[1], ' ');
+		if (!split_args)
+			ft_error_p(stack_a, stack_b, NULL);
+		if (limits(split_args) == 1 || duplicate(split_args) == 1)
 		{
-			if (limits(split_args + i) == 1)
-				ft_error_p();
-			if (duplicate(split_args + i) == 1)
-				ft_error_p();
+			free_split(split_args);
+			ft_error_p(stack_a, stack_b, NULL);
 		}
 	}
+	free_split(split_args);
 }
 
 void	init_list_split(char **split_args, t_list **stack)
 {
-	t_list	*new;
-	int		i;
-	int		index;
-
-	index = 1;
-	i = 0;
-	*stack = NULL;
-	while (split_args[i])
-	{
-		new = ft_lstnew(ft_atoi_swap(split_args[i]));
-		new->index = index;
-		ft_lstadd_back(stack, new);
-		i++;
-		index++;
-	}
+	if (!split_args || !split_args[0])
+		return ;
+	create_stack(split_args, stack, 1);
 }
 
 void	init_list(int argc, char **argv, t_list **stack)
 {
-	t_list	*new;
-	int		i;
-	int		index;
+	char	**split_args;
 	int		j;
-	
-	index = 1;
-	i = 1;
+
 	j = 0;
 	*stack = NULL;
 	if (argc > 2)
-	{
-		while(argv[i])
-		{
-			new = ft_lstnew(ft_atoi_swap(argv[i]));
-			new->index = index;
-			ft_lstadd_back(stack, new);
-			i++;
-			index++;
-		}
-	}
+		create_stack(argv + 1, stack, 1);
 	else if (argc == 2)
 	{
-		char **split_args = ft_split(argv[1], "	 ");
+		split_args = ft_split(argv[1], ' ');
 		if (!split_args)
-			ft_error_p();
+			ft_error_p(NULL, NULL, split_args);
 		init_list_split(split_args, stack);
 		while (split_args[j])
 			free(split_args[j++]);
 		free(split_args);
+	}
+}
+
+void	create_stack(char **argv, t_list **stack, int start_index)
+{
+	t_list	*new;
+	int		i;
+	int		index;
+
+	i = 0;
+	index = start_index;
+	while (argv[i])
+	{
+		new = ft_lstnew(ft_atoi_swap(argv[i]));
+		new->index = index;
+		ft_lstadd_back(stack, new);
+		i++;
+		index++;
 	}
 }

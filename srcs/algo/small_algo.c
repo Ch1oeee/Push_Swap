@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 20:00:42 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/10 15:15:23 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:14:49 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ int	algo_five(t_list **stack_a, t_list **stack_b)
 			while (*stack_a != smallest)
 				rra(stack_a, 1);
 		}
-		pb(stack_a, stack_b);
+		pb(stack_a, stack_b, 1);
 	}
 	algo_three(stack_a);
-	pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
+	pa(stack_a, stack_b, 1);
+	pa(stack_a, stack_b, 1);
 	return (0);
 }

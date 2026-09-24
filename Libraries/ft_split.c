@@ -6,27 +6,25 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 19:01:56 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/12/30 17:13:26 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/26 17:15:23 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	separators(char c, char const *caracters)
+void	free_split(char **split_args)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (caracters[i])
-	{
-		if (caracters[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
+	j = 0;
+	if (!split_args)
+		return ;
+	while (split_args[j])
+		free(split_args[j++]);
+	free(split_args);
 }
 
-static size_t	word_count(char const *s, char const *caracters)
+static size_t	word_count(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -35,27 +33,27 @@ static size_t	word_count(char const *s, char const *caracters)
 	count = 0;
 	while (s[i])
 	{
-		while (s[i] && separators(s[i], caracters) && s[i])
+		while (s[i] == c && s[i])
 			i++;
 		if (s[i])
 			count++;
-		while (!separators(s[i], caracters) && s[i])
+		while (s[i] != c && s[i])
 			i++;
 	}
 	return (count);
 }
 
-static int	word_len(char const *str, char const *caracters)
+static int	word_len(char const *str, char c)
 {
 	size_t	len;
 
 	len = 0;
-	while (str[len] && !separators(str[len], caracters))
+	while (str[len] && str[len] != c)
 		len++;
 	return (len);
 }
 
-char	**ft_split(char const *str, char const *caracters)
+char	**ft_split(char const *str, char c)
 {
 	char	**words;
 	size_t	i;
@@ -64,16 +62,16 @@ char	**ft_split(char const *str, char const *caracters)
 
 	i = 0;
 	j = 0;
-	words = ft_calloc((word_count(str, caracters) + 1), sizeof(char *));
+	words = ft_calloc((word_count(str, c) + 1), sizeof(char *));
 	if (!words)
 		return (NULL);
 	while (str[i])
 	{
-		while (str[i] && separators(str[i], caracters) && str[i])
+		while (str[i] == c && str[i])
 			i++;
-		if (str[i] && !separators(str[i], caracters))
+		if (str[i] != c && str[i])
 		{
-			length = word_len(&str[i], caracters);
+			length = word_len(&str[i], c);
 			words[j] = ft_substr(str, i, length);
 			j++;
 			i += length;

@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:38:04 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/08 11:49:37 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:11:29 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	ft_lstclear(t_list **lst)
 		temp = (*lst)->next;
 		free(*lst);
 		*lst = temp;
-	}	
+	}
 }

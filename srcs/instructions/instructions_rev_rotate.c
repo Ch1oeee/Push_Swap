@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:34:58 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/05 19:38:38 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/02/18 00:56:26 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	reverse_rotate(t_list **stack)
 	t_list	*last_node;
 	t_list	*before_last;
 	t_list	*current;
-	int		i;
 
 	if (ft_lstsize(*stack) <= 1)
 		return (-1);
@@ -32,12 +31,7 @@ int	reverse_rotate(t_list **stack)
 	before_last->next = NULL;
 	ft_lstadd_front(stack, last_node);
 	current = *stack;
-	i = 1;
-	while (current)
-	{
-		current->index = i++;
-		current = current->next;
-	}
+	index_update(current);
 	return (0);
 }
 
@@ -63,7 +57,7 @@ int	rrr(t_list **stack_a, t_list **stack_b)
 {
 	if ((!rra(stack_a, 1)) || (!rrb(stack_b, 1)))
 		return (-1);
-	rra(stack_b, 0);
+	rra(stack_a, 0);
 	rrb(stack_b, 0);
 	write(1, "rrr\n", 4);
 	return (0);

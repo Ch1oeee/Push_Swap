@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:55:25 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/03 12:00:26 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:02:57 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,24 @@ int	is_number(char *str)
 	return (1);
 }
 
-void	ft_error_p(void)
+void	ft_error_p(t_list **stack_a, t_list **stack_b, char **split_args)
 {
-	ft_putstr_fd("Error\n", 2);
+	if (split_args)
+		free_split(split_args);
+	if (stack_a)
+		free_stacks(stack_a, stack_b);
+	ft_putstr_fd("Error\n", 1);
 	exit(EXIT_FAILURE);
 }
 
-int	ft_atoi_swap(const char *str)
+long int	ft_atoi_swap(const char *str)
 {
-	long	result;
-	int		sign;
-	int		i;
+	long int	result;
+	int			sign;
+	int			i;
 
+	if (!str)
+		return (ft_putstr_fd("Error\n", 1), ERROR);
 	i = 0;
 	sign = 1;
 	result = 0;
@@ -58,7 +64,7 @@ int	ft_atoi_swap(const char *str)
 		if (str[i] == '-')
 			sign = -1;
 		if (!str[i + 1])
-			ft_error_p();
+			return (ERROR);
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
@@ -66,21 +72,23 @@ int	ft_atoi_swap(const char *str)
 		result = result * 10 + str[i] - '0';
 		i++;
 	}
-	if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
-		ft_error_p();
-	return ((int)(result * sign));
+	return ((result * sign));
 }
 
 int	limits(char **argv)
 {
-	int	i;
+	int			i;
+	long int	nb;
 
 	i = 0;
+	nb = ft_atoi_swap(argv[i]);
 	while (argv[i])
 	{
+		nb = ft_atoi_swap(argv[i]);
 		if (!is_number(argv[i]))
 			return (1);
-		ft_atoi_swap(argv[i]);
+		if (nb > INT_MAX || nb < INT_MIN)
+			return (1);
 		i++;
 	}
 	return (0);

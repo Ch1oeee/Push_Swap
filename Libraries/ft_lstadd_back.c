@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:04:38 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/01/02 19:18:45 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:11:08 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	lst_2 = ft_lstlast(*lst);
 	lst_2->next = new;
-	// printf("stack a : %d et %d\n", new->content, new->index);
 }
